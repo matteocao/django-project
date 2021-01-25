@@ -130,3 +130,9 @@ dmypy.json
 
 # Others
 .DS_store
+
+# Media files
+gtdainterface/media/*
+
+# Logs
+gtdainterface/logging/*
