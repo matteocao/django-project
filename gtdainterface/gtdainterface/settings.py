@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+import django_heroku
 # retrieve the secrets
 load_dotenv()
 
@@ -35,6 +36,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django_rq',
+    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -189,3 +191,10 @@ LOGGING = {
 # email settings directly in the right view (need sendGrid account)
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+
+# dropbox file storage
+DROPBOX_OAUTH2_TOKEN = os.getenv('DROPBOX_OAUTH2_TOKEN')
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())

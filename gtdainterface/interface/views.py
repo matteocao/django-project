@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import request, HttpResponse, Http404, HttpResponseRedirect, StreamingHttpResponse
-from django.core.files.storage import FileSystemStorage
+#from django.core.files.storage import FileSystemStorage
 from .models import Data, Result, Parameter
 from django.conf import settings
 from django.utils.safestring import mark_safe
@@ -9,6 +9,13 @@ import requests
 import time
 import django_rq
 from django.contrib.auth.decorators import login_required
+import dropbox
+import random
+import string
+
+
+dbx = dropbox.Dropbox(settings.DROPBOX_OAUTH2_TOKEN)
+
 
 # Create your views here.
 @login_required
@@ -43,13 +50,19 @@ def upload_data_view(request):
 @login_required
 def upload_data(request):
 # here save in database
-    file_name = request.POST['fname']
+    uuid = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(32)])
+    file_name = request.POST['fname']+uuid
     file = request.FILES['file']
-    print(file.name) # form attribute enctype="multipart/form-data"
-    print(file.size)
-    fs = FileSystemStorage() # saving to MEDIA_ROOT
-    real_name = fs.save(file_name,file)
-    dt = Data.objects.create(dataset_url=settings.MEDIA_URL + real_name,dataset_name=file_name)
+    print("file name: ", file.name) # form attribute enctype="multipart/form-data"
+    print("file size: ", file.size)
+    #fs = FileSystemStorage() # saving to MEDIA_ROOT or Dropbox
+    #real_name = fs.save(file_name,file)
+    #print("file anme: ",settings.MEDIA_ROOT+real_name)
+    #print("uploading file...")
+    #dbx.files_upload("Uploaded file "+real_name, settings.MEDIA_ROOT+real_name)
+    #print("metadata of file...")
+    #print(dbx.files_get_metadata(settings.MEDIA_ROO+real_name).server_modified)
+    dt = Data.objects.create(dataset_file=file,dataset_url=settings.MEDIA_URL + file_name,dataset_name=file_name)
     context = {'user_id': request.user}
     return HttpResponseRedirect(reverse('interface:params', args=(dt.id,)))
     

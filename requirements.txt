@@ -12,3 +12,6 @@ rq
 redis
 sendgrid
 python-dotenv
+gunicorn
+django-heroku
+django-storages[dropbox]
