@@ -1,0 +1,13 @@
+Django
+django-bootstrap4
+numpy
+giotto-tda
+pandas
+plotly
+Pillow
+psutil
+requests
+rq
+redis
+sendgrid
+python-dotenv

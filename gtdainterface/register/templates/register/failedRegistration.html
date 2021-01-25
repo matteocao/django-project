@@ -1,0 +1,13 @@
+<html>
+  <head>
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'interface/favicon.png' %}">
+    <meta charset="utf-8">
+    <title>Failed Registration</title>
+  </head>
+  <body>
+    <h1>Registration failed!</h1>
+    
+    Please go back to the <a href="{% url 'register:register' %}">registration form</a>.
+  </body>
+</html>

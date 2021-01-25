@@ -1,0 +1,19 @@
+<html>
+  <head>
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'interface/favicon.png' %}">
+    <meta charset="utf-8">
+    <title>Form</title>
+  </head>
+  <body>
+      <h1>User id:{{ user_id }}</h1>
+
+      <form action="{% url 'interface:update_params' data_id %}" method="post">
+      {% csrf_token %}
+        <input type="text" id="homology" name="homology" value="(0,1)">
+        <input type="text" id="maxEdge" name="maxEdgeLength" value="0.1">
+        <input type="submit" value="Update">
+      </form>
+
+  </body>
+</html>

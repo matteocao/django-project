@@ -1,0 +1,19 @@
+<html>
+  <head>
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'interface/favicon.png' %}">
+    <meta charset="utf-8">
+    <title>Form</title>
+  </head>
+  <body>
+    <h1>Sign-Up</h1>
+    {% block content %}
+        <form method="post" class="form-group">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Register</button>
+        </form>
+    {% endblock %}
+    Already signed-up? <a href="/accounts/login">Login then.</a>
+  </body>
+</html>

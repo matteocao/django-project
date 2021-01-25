@@ -1,0 +1,28 @@
+<html>
+  <head>
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'interface/favicon.png' %}">
+    <meta charset="utf-8">
+    <title>Form</title>
+  </head>
+  <body>
+    <h1>Results</h1>
+    <div id="demo">
+        Waiting for results from the server...
+    </div>
+    <script>
+    function loadRes() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("GET", "{% url 'interface:get_results' job_id %}", true);
+      xhttp.send();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+         document.getElementById("demo").innerHTML = this.responseText;
+        }
+      };
+    }
+    loadRes()
+    </script>
+    <a href="{% url 'interface:upload_data_view' %}">Upload and compute again?</a>
+  </body>
+</html>
