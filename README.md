@@ -71,6 +71,14 @@ To create tables in the databse for auth, session, contenttype, messages, static
 python manage.py migrate
 ```
 
+## Connect to PostgreSQL
+
+First you need to install `psycopg2` :
+```
+pip install psycopg2
+```
+and then
+
 # Migrating new model
 
 If you create a new DB model, then *add* its migration via
@@ -129,3 +137,36 @@ You can also add the  `high` and `low` queues
 You can use signals that are triggered when a certain event happens. For exammple, every time an entry is saved in a table of the database.
 
 To do so, initalise the connections in the `apps.py` file and then create a new `signals.py` module with the receiver functions.
+
+
+# Deploy on Heroku
+
+Need to install [postgres](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup)
+Need to download te **heroku cli**:
+```
+brew install heroku/brew/heroku
+```
+Login with
+```
+heroku login
+```
+Then create and deploy the app: first move to the root folder
+```
+heroku create
+git push heroku main
+heroku ps:scale web=1
+heroku open
+```
+
+To scale down heroku app:
+```
+heroku ps:scale web=0
+```
+
+## Collect static files
+
+Simply run
+```
+python manage.py collectstatic
+```
+
