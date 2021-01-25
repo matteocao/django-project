@@ -9,12 +9,8 @@ import requests
 import time
 import django_rq
 from django.contrib.auth.decorators import login_required
-import dropbox
 import random
 import string
-
-
-dbx = dropbox.Dropbox(settings.DROPBOX_OAUTH2_TOKEN)
 
 
 # Create your views here.
@@ -51,7 +47,7 @@ def upload_data_view(request):
 def upload_data(request):
 # here save in database
     uuid = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(32)])
-    file_name = request.POST['fname']+uuid
+    file_name = uuid
     file = request.FILES['file']
     print("file name: ", file.name) # form attribute enctype="multipart/form-data"
     print("file size: ", file.size)
@@ -62,7 +58,7 @@ def upload_data(request):
     #dbx.files_upload("Uploaded file "+real_name, settings.MEDIA_ROOT+real_name)
     #print("metadata of file...")
     #print(dbx.files_get_metadata(settings.MEDIA_ROO+real_name).server_modified)
-    dt = Data.objects.create(dataset_file=file,dataset_url=settings.MEDIA_URL + file_name,dataset_name=file_name)
+    dt = Data.objects.create(dataset_file=file,dataset_url=settings.MEDIA_URL + file_name,dataset_name=request.POST['fname'])
     context = {'user_id': request.user}
     return HttpResponseRedirect(reverse('interface:params', args=(dt.id,)))
     
