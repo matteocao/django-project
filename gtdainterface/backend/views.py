@@ -36,6 +36,7 @@ def computeAndPlot(dbx, pm_id):
 
 # Create your views here.
 def compute(request, pm_id): # expects pm_id
+    dbx = dropbox.Dropbox(settings.DROPBOX_OAUTH2_TOKEN)
     # launching a job on redis server
     job = django_rq.enqueue(computeAndPlot, args=(dbx, pm_id,))
     #print('Job id: %s' % job.id)
