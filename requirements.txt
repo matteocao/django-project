@@ -6,6 +6,7 @@ pandas
 plotly
 Pillow
 psutil
+django-rq
 requests
 rq
 redis
