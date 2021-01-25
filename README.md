@@ -30,10 +30,24 @@ In the newly created folder, you will find the following files:
  - `urls.py` a file containing the urls of the apps of the project
  - `wsgi.py` a file for the WSGI deployment
  
-# Run django server
-Go inside the outer `mysite` folder and then run:
+# To make the app work
+ 
+## Run django server
+Go inside the outer `gtdainterface` folder and then run:
 ```
 python manage.py runserver 8080
+```
+
+## Run Redis server
+Just type
+```
+redis-server
+```
+
+## Run Redis-RQ
+Go inside the outer `gtdainterface` folder and then run:
+```
+python manage.py rqworker default
 ```
 
 # Create an app
