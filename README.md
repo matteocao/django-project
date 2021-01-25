@@ -153,6 +153,7 @@ heroku login
 Then create and deploy the app: first move to the root folder
 ```
 heroku create
+git commit -am "commit files and modifications"
 git push heroku main
 heroku ps:scale web=1
 heroku open
@@ -169,4 +170,18 @@ Simply run
 ```
 python manage.py collectstatic
 ```
+
+## Run bash on Heroku
+Simply:
+```
+heroku run bash
+```
+
+## Run django-python shell on Heroku
+Simply
+```
+heroku run python manage.py shell
+```
+## Configure env variables
+Set secrets using `heroku config`
 
