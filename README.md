@@ -164,6 +164,12 @@ To scale down heroku app:
 heroku ps:scale web=0
 ```
 
+## Migrate DB
+To migrate the database type
+```
+heroku run python manage.py migrate
+```
+
 ## Collect static files
 
 Simply run
@@ -184,4 +190,28 @@ heroku run python manage.py shell
 ```
 ## Configure env variables
 Set secrets using `heroku config`
+```
+heroku config:set VAR = 'xxxx'
+```
 
+## Add Redis on heroku
+```
+heroku addons:create redistogo:nano
+```
+Add this to the *Procfile*:
+```
+worker: python gtdainterface/manage.py rqworker high
+```
+And add a worker to heroku:
+```
+heroku scale worker=1
+```
+## Migrate database
+Activate PostgreSQL database
+```
+heroku addons
+```
+and check the `heroku config` to find the db url.
+```
+heroku run python manage.py migrate
+```
