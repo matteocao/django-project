@@ -17,3 +17,4 @@ orca
 django-heroku
 django-storages[dropbox]
 whitenoise
+kaleido
