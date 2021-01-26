@@ -11,6 +11,8 @@ import django_rq
 from django.contrib.auth.decorators import login_required
 import random
 import string
+#from backend.worker import listen, conn
+#from rq import Queue
 
 
 # Create your views here.
@@ -71,10 +73,7 @@ def results_view(request, job_id):
 
 @login_required
 def get_results(request, job_id):
-    try:
-        queue = django_rq.get_queue('high')
-    except:
-        queue = django_rq.get_queue('default')
+    queue = django_rq.get_queue()
     job2 = queue.fetch_job(job_id)
     #print('results : ', job2.result)
     while job2.result is None:

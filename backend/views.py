@@ -8,6 +8,8 @@ import plotly.graph_objects as go
 from interface.models import Result, Parameter, Data
 from interface.views import update_params
 import django_rq
+from rq import Queue
+from .worker import conn
 import requests
 import time
 import io
@@ -38,6 +40,12 @@ def computeAndPlot(dbx, pm_id):
 def compute(request, pm_id): # expects pm_id
     dbx = dropbox.Dropbox(settings.DROPBOX_OAUTH2_TOKEN)
     # launching a job on redis server
+    #initialise queue
+    #q = Queue(connection=conn)
+    #print("equeueing...")
+    #job = q.enqueue(computeAndPlot, args=(dbx, pm_id,))
+    #time.sleep(4)
+    #print(job.result)
     job = django_rq.enqueue(computeAndPlot, args=(dbx, pm_id,))
     #print('Job id: %s' % job.id)
     #print('Job id: %s' % job.get_status())
