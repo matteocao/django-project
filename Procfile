@@ -1,2 +1,2 @@
 web: gunicorn gtdainterface.wsgi
-worker: python gtdainterface/manage.py rqworker high
+worker: python manage.py rqworker high

@@ -141,6 +141,7 @@ To do so, initalise the connections in the `apps.py` file and then create a new 
 
 # Deploy on Heroku
 
+## Installation
 Need to install [postgres](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup)
 Need to download te **heroku cli**:
 ```
@@ -159,15 +160,21 @@ heroku ps:scale web=1
 heroku open
 ```
 
-To scale down heroku app:
+To scale down heroku app processes:
 ```
 heroku ps:scale web=0
 ```
 
 ## Migrate DB
-To migrate the database type
+To migrate the database, type
 ```
 heroku run python manage.py migrate
+```
+
+## Create admin on Heroku
+Type
+```
+heroku run python manage.py createsuperuser
 ```
 
 ## Collect static files
@@ -189,7 +196,7 @@ Simply
 heroku run python manage.py shell
 ```
 ## Configure env variables
-Set secrets using `heroku config`
+Set **secrets** using `heroku config`
 ```
 heroku config:set VAR = 'xxxx'
 ```
@@ -211,7 +218,7 @@ Activate PostgreSQL database
 ```
 heroku addons
 ```
-and check the `heroku config` to find the db url.
+and check the `heroku config` to find the db url. To make the migration
 ```
 heroku run python manage.py migrate
 ```
