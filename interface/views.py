@@ -71,7 +71,10 @@ def results_view(request, job_id):
 
 @login_required
 def get_results(request, job_id):
-    queue = django_rq.get_queue('default')
+    try:
+        queue = django_rq.get_queue('high')
+    except:
+        queue = django_rq.get_queue('default')
     job2 = queue.fetch_job(job_id)
     #print('results : ', job2.result)
     while job2.result is None:

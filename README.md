@@ -141,7 +141,7 @@ To do so, initalise the connections in the `apps.py` file and then create a new 
 
 # Deploy on Heroku
 
-## CHeck it out
+## Check it out
 
 Visit the app [site](https://gentle-everglades-46174.herokuapp.com) now!
 
@@ -167,6 +167,18 @@ heroku open
 To scale down heroku app processes:
 ```
 heroku ps:scale web=0
+```
+
+## Clear built packages
+To clear the build, for example when you modify the Procfile
+
+```
+heroku buildpacks:clear
+```
+and the re-coimmit 
+```
+git commit --allow-empty -m "Adjust buildpacks on Heroku"
+git push heroku main
 ```
 
 ## Migrate DB
