@@ -204,7 +204,7 @@ worker: python gtdainterface/manage.py rqworker high
 ```
 And add a worker to heroku:
 ```
-heroku scale worker=1
+heroku ps:scale worker=1
 ```
 ## Migrate database
 Activate PostgreSQL database
