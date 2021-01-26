@@ -9,7 +9,6 @@ from interface.models import Result, Parameter, Data
 from interface.views import update_params
 import django_rq
 from rq import Queue
-from .worker import conn
 import requests
 import time
 import io
