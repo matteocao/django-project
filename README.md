@@ -141,6 +141,10 @@ To do so, initalise the connections in the `apps.py` file and then create a new 
 
 # Deploy on Heroku
 
+## CHeck it out
+
+Visit the app [site](https://gentle-everglades-46174.herokuapp.com) now!
+
 ## Installation
 Need to install [postgres](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup)
 Need to download te **heroku cli**:
@@ -221,4 +225,11 @@ heroku addons
 and check the `heroku config` to find the db url. To make the migration
 ```
 heroku run python manage.py migrate
+```
+
+## Heroku Logs streaming
+
+Write in the terminal:
+```
+heroku logs --tail
 ```
