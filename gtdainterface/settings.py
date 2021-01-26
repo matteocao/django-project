@@ -135,13 +135,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
 RQ_QUEUES = {
-    'default': {
-        'HOST': 'localhost',
-        'PORT': 6379,
-        'DB': 0,
-        #'PASSWORD': 'some-password',
-        'DEFAULT_TIMEOUT': 500,
-    },
+    #'default': {
+    #    'HOST': 'localhost',
+    #    'PORT': 6379,
+    #    'DB': 0,
+    #    #'PASSWORD': 'some-password',
+    #    'DEFAULT_TIMEOUT': 500,
+    #},
     #'with-sentinel': {
     #    'SENTINELS': [('localhost', 26736), ('localhost', 26737)],
     #    'MASTER_NAME': 'redismaster',
@@ -152,8 +152,9 @@ RQ_QUEUES = {
     #        'socket_connect_timeout': 0.3
     #    },
     #},
-    'high': {
-        'URL': os.getenv('REDISTOGO_URL','redis://localhost:6379/0'), # If you're on Heroku
+    'default': {
+        'URL': os.getenv('REDISTOGO_URL','redis://localhost:6379'), # If you're on Heroku
+        'DB': 0,
         'DEFAULT_TIMEOUT': 500,
     },
     'low': {
