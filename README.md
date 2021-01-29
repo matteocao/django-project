@@ -44,12 +44,27 @@ Just type
 redis-server
 ```
 
-## Run Redis-RQ
+## Run Redis-RQ worker
 Go inside the outer `gtdainterface` folder and then run:
 ```
 python manage.py rqworker default
 ```
 
+## .env file
+Create a `.env` file with the following secret variables:
+```
+export SENDGRID_API_KEY = 'xxx'
+export RQ_API_TOKEN = 'xxx'
+export SECRET_KEY = 'xxx'
+export DROPBOX_OAUTH2_TOKEN = 'xxx'
+export DATABASE_URL = 'xxx'
+```
+In particular:
+ - **SENDGRID_API_KEY** is for sending emails with sendgrid
+ - **RQ_API_TOKEN** is for RQ to contact the Redis server
+ - **SECRET_KEY** this is the django app secret key
+ - **DROPBOX_OAUTH2_TOKEN** tis s to configure Dropbox storage API
+ - **DATABASE_URL** this is for the online PostgreSQL database
 # Create an app
 
 Go inside the outer `mysite` folder, and then choose the name -- `polls` in this case -- and run
